@@ -25,35 +25,6 @@
 Проект построен по принципу разделения ответственности (Separation of Concerns) и разделён на три основных слоя:  
 **инфраструктура**, **логика работы с данными**, **пользовательский интерфейс**.
 
-
-CurrencyConverter.sln
-│
-├── CurrencyConverter/                 # Основной проект
-│   │
-│   ├── Program.cs                     # Точка входа
-│   ├── AppServices.cs                 # DI-контейнер, регистрация сервисов
-│   ├── HttpClientProvider.cs          # Обёртка над HttpClient
-│   │
-│   ├── Currency/                      # Логика работы с данными
-│   │   ├── DataLoader.cs              # Загрузка и парсинг XML ЦБ РФ
-│   │   ├── CurrencyService.cs         # Кэширование и предоставление курсов
-│   │   ├── ConverterService.cs        # Математика конвертации валют
-│   │   ├── MemoryCacheService.cs      # Кэш курсов по датам
-│   │
-│   ├── UI/                            # Консольный интерфейс
-│   │   ├── MenuController.cs          # Главное меню и навигация
-│   │   ├── ConsoleMessageService.cs   # Вывод сообщений и ошибок
-│   │   ├── PaginateService.cs         # Постраничный вывод валют
-│   │
-│   ├── ValCurs.xsd                    # XSD-схема ЦБ РФ
-│   ├── ValCurs.Designer.cs            # Автогенерируемые классы для XML
-│
-└── CurrencyConverter.Tests/           # Проект автотестов (xUnit)
-    ├── ConverterTests.cs              # Тесты конвертации
-    ├── DataLoaderParserTests.cs       # Тесты парсера XML
-    └── TestData/
-        └── sample.xml                 # Тестовый XML для парсера
-
 ### 1. Инфраструктура
 - Program.cs — запуск приложения.
 - AppServices.cs — DI-контейнер, создаёт и связывает сервисы.
