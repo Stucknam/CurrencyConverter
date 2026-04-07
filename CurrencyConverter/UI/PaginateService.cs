@@ -24,6 +24,9 @@ namespace CurrencyConverter.UI
         public bool HasPrevious => Page > 1;
 
     }
+    /// <summary>
+    /// PaginateService - сервис для пагинации данных. Позволяет разбивать большие наборы данных на страницы для удобного отображения в UI.
+    /// </summary>
     public class PaginateService: IPaginationService
     {     
         public PaginationResult<T> Paginate<T>(IEnumerable<T> items, int page, int pageSize)

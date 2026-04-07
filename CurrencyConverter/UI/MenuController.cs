@@ -9,6 +9,9 @@ using static CurrencyConverter.Models.ValCursData;
 
 namespace CurrencyConverter.UI
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MenuController
     {
         private readonly AppServices appServices;
@@ -16,7 +19,9 @@ namespace CurrencyConverter.UI
         {
             this.appServices = appServices;
         }
-
+        /// <summary>
+        /// Отображение главного меню программы
+        /// </summary>
         public void ShowMainMenu()
         {
             Console.ResetColor();
@@ -28,18 +33,9 @@ namespace CurrencyConverter.UI
                     "\tq - Выход\n" +
                     ">> ");
         }
-
-        int ReadInt()
-        {
-            var input = Console.ReadLine();
-            if (int.TryParse(input, out int result))
-                return result;
-            else
-                throw new FormatException("Некорректный ввод. Ожидалось целое число.");
-
-        }
-
-
+        /// <summary>
+        /// Точка входа программы и основной цикл с главным меню
+        /// </summary>
         public void Run()
         {
             var _msg = appServices.MessageService;
@@ -68,14 +64,17 @@ namespace CurrencyConverter.UI
                         Console.Clear();
                         break;
                     case "2":
+                        // Конвертация из рублей в валюту
                         ConvertRublesToCurrency().Wait();
                         Console.Clear();
                         break;
                     case "3":
+                        // Конвертация из валюты в рубли
                         ConvertCurrencyToRubles().Wait();
                         Console.Clear();
                         break;
                     case "4":
+                        // Rjydthnfwbz vt;le dfk.nfvb
                         ConvertCurrencyToCurrency().Wait();
                         Console.Clear();
                         break;
@@ -94,6 +93,12 @@ namespace CurrencyConverter.UI
             } while (input?.ToLower() != "q" && input != "stop");
         }
 
+        /// <summary>
+        /// Постраничная навигация по курсам валют. Позволяет пользователю просматривать курсы валют на выбранную дату, разбитые на страницы для удобства чтения.
+        /// </summary>
+        /// <param name="rates">Список курсов валют</param>
+        /// <param name="date">Дата</param>
+        /// <param name="pageSize">Размер страницы</param>
         public void PaginateCurrencyRates(List<ValuteRow> rates, DateOnly date, int pageSize = 10)
         {
             var _msg = appServices.MessageService;
@@ -128,7 +133,12 @@ namespace CurrencyConverter.UI
                     break;
             }
         }
-
+        /// <summary>
+        /// Отображение курсов валют на выбранную дату. 
+        /// Пользователь может ввести дату для получения курсов валют на эту дату, или нажать Enter для получения курсов на текущую дату. 
+        /// Также предусмотрена обработка ошибок при загрузке данных с API ЦБ РФ и при вводе даты.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetRates()
         {
             var _msg = appServices.MessageService;
@@ -168,7 +178,7 @@ namespace CurrencyConverter.UI
 
 
                     _msg.PrintMessage("Курсы валют успешно загружены!", MessageType.Success);
-                    // Вывод курсов валют с постраничной 
+                    // Вывод курсов валют с постраничной навигацией
                     PaginateCurrencyRates(valCursData.Valute.ToList(), date);
                     return;
 
@@ -186,7 +196,12 @@ namespace CurrencyConverter.UI
             }
 
         }
-
+        /// <summary>
+        /// Ввод кода валюты для конвертации. 
+        /// Пользователь может ввести буквенный код валюты (например, USD или EUR) для выбора валюты, с которой он хочет работать.
+        /// </summary>
+        /// <param name="availableCurrencies">Список доступных валют</param>
+        /// <returns></returns>
         private string? AskCurrencyCode(List<ValuteRow> availableCurrencies)
         {
             var _msg = appServices.MessageService;
@@ -220,6 +235,10 @@ namespace CurrencyConverter.UI
                 return input;
             }
         }
+        /// <summary>
+        /// Конвертация из рублей в валюту. Пользователь вводит сумму в рублях и выбирает валюту, в которую он хочет конвертировать.
+        /// </summary>
+        /// <returns></returns>
         public async Task ConvertRublesToCurrency()
         {
             var _msg = appServices.MessageService;
@@ -280,6 +299,10 @@ namespace CurrencyConverter.UI
                 Console.ReadKey(true);
             }
         }
+        /// <summary>
+        /// Конвертация из валюты в рубли. Пользователь вводит сумму в выбранной валюте и получает эквивалент в рублях.
+        /// </summary>
+        /// <returns></returns>
         public async Task ConvertCurrencyToRubles()
         {
             var _msg = appServices.MessageService;
@@ -340,7 +363,12 @@ namespace CurrencyConverter.UI
                 Console.ReadKey(true);
             }
         }
-
+        /// <summary>
+        /// Конвертация из валюты в валюту. 
+        /// Пользователь выбирает две валюты и вводит сумму в первой валюте, после чего получает эквивалент во второй валюте. 
+        /// Конвертация происходит через рубли, что может привести к некоторой неточности в результате.
+        /// </summary>
+        /// <returns></returns>
         public async Task ConvertCurrencyToCurrency()
         {
             var _msg = appServices.MessageService;

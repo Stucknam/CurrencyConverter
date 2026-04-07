@@ -21,7 +21,9 @@ namespace CurrencyConverter.UI
         Accent,
         Title
     }
-
+    /// <summary>
+    /// Сервис для улучшения отображения текста в консоли
+    /// </summary>
     public class ConsoleMessageService: IMessageService
         {
 

@@ -13,6 +13,9 @@ namespace CurrencyConverter.Currency
         void Set(DateOnly date, ValCursData data);
 
     }
+    /// <summary>
+    /// Сервис кэширования данных о курсах валют
+    /// </summary>
     public class MemoryCashService:ICurrencyCache
     {
             private readonly Dictionary<DateOnly, ValCursData> _cache = new();

@@ -14,6 +14,9 @@ namespace CurrencyConverter.Currency
         Task<ValCursData> LoadCurrencyRates(DateOnly date);
         Task<ValCursData> LoadCurrencyRates();
     }
+    /// <summary>
+    /// Сервис для загрузки данных с API ЦБ РФ
+    /// </summary>
     public  class DataLoader: IDataLoader
     {
         /// <summary>
