@@ -1,0 +1,10 @@
+﻿<ValCurs Date="07.04.2026" name="Foreign Currency Market">
+	<Valute ID="R01235">
+		<NumCode>840</NumCode>
+		<CharCode>USD</CharCode>
+		<Nominal>1</Nominal>
+		<Name>Доллар США</Name>
+		<Value>92,34</Value>
+		<VunitRate>92,34</VunitRate>
+	</Valute>
+</ValCurs>
