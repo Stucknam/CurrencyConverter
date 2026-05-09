@@ -25,7 +25,7 @@ namespace CurrencyConverter
             Http = new HttpClientProvider(new HttpClient());
             Converter = new ConverterService();
             Loader = new DataLoader(Http);
-            Cache = new MemoryCashService();
+            Cache = new MemoryCasheService();
             MessageService = new ConsoleMessageService();
             currencyService = new CurrencyService(Loader, Cache);
             pageService = new PaginateService();

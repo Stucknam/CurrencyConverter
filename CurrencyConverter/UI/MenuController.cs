@@ -74,7 +74,7 @@ namespace CurrencyConverter.UI
                         Console.Clear();
                         break;
                     case "4":
-                        // Rjydthnfwbz vt;le dfk.nfvb
+                        // Конвертация из валюты в валюту
                         ConvertCurrencyToCurrency().Wait();
                         Console.Clear();
                         break;

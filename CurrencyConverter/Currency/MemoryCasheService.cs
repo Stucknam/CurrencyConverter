@@ -16,7 +16,7 @@ namespace CurrencyConverter.Currency
     /// <summary>
     /// Сервис кэширования данных о курсах валют
     /// </summary>
-    public class MemoryCashService:ICurrencyCache
+    public class MemoryCasheService:ICurrencyCache
     {
             private readonly Dictionary<DateOnly, ValCursData> _cache = new();
 
